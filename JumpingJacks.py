@@ -6,7 +6,7 @@ mpPose = mp.solutions.pose
 pose = mpPose.Pose()
 mpDraw = mp.solutions.drawing_utils
 
-cap = cv2.VideoCapture("JumpingJacks.mov")
+cap = cv2.VideoCapture(1)
 pTime = 0
 
 jump_started = False
@@ -23,13 +23,18 @@ while True:
         left_hand_y = results.pose_landmarks.landmark[mpPose.PoseLandmark.LEFT_WRIST].y
         right_shoulder_y = results.pose_landmarks.landmark[mpPose.PoseLandmark.RIGHT_SHOULDER].y
         right_hand_y = results.pose_landmarks.landmark[mpPose.PoseLandmark.RIGHT_WRIST].y
+        left_ankle_y = results.pose_landmarks.landmark[mpPose.PoseLandmark.LEFT_ANKLE].y
+        right_ankle_y = results.pose_landmarks.landmark[mpPose.PoseLandmark.RIGHT_ANKLE].y
 
         # проверяем условие для засчитывания прыжка
         if left_hand_y > left_shoulder_y and right_hand_y > right_shoulder_y and not jump_started:
-            jump_started = True
-            repetitions_count += 1
-            print("Выполнен прыжок:", repetitions_count)
-        elif left_hand_y <= left_shoulder_y and right_hand_y <= right_shoulder_y:
+            if left_hand_y > left_shoulder_y and right_hand_y > right_shoulder_y and \
+               left_ankle_y > right_ankle_y and not jump_started:
+                jump_started = True
+                repetitions_count += 1
+                print("Выполнен прыжок:", repetitions_count)
+        elif left_hand_y <= left_shoulder_y and right_hand_y <= right_shoulder_y and \
+             left_ankle_y <= right_ankle_y:
             jump_started = False
 
         mpDraw.draw_landmarks(img, results.pose_landmarks, mpPose.POSE_CONNECTIONS)
@@ -42,7 +47,7 @@ while True:
     fps = 1 / (cTime - pTime)
     pTime = cTime
     cv2.putText(img, f"FPS: {int(fps)}", (70, 50), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
-    cv2.putText(img, f"Jumping Jacks: {repetitions_count}", (70, 100), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
+    cv2.putText(img, f"Jumping Jacks: {repetitions_count}", (70, 100), cv2.FONT_HERSHEY_PLAIN, 3, (0, 0, 255), 3)
 
     cv2.imshow('frame', img)
     if cv2.waitKey(1) & 0xFF == 27:
