@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Live Pose Detection</title>
+</head>
+<body>
+<h1>Live Pose Detection</h1>
+<img id="pose_image" src=""/>
+<p id="fps"></p>
+<p id="jumps"></p>
+
+<script>
+    var ws = new WebSocket("ws://127.0.0.1:8000/ws");
+
+    ws.onmessage = function (event) {
+        var data = JSON.parse(event.data);
+        document.getElementById("pose_image").src = "data:image/jpeg;base64," + data.image;
+        document.getElementById("fps").innerText = "FPS: " + data.fps;
+        document.getElementById("jumps").innerText = "Jumps: " + data.jumps;
+    };
+</script>
+</body>
+</html>

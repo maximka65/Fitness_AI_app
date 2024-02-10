@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ваше приложение для тренировок</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #f2f2f2;
+        }
+
+        #user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        #user-info img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        #days {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+            background-color: #f2f2f2;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #program {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #f2f2f2;
+        }
+
+        #start-workout,
+        #level-buttons,
+        #create-workout {
+            background-color: purple;
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        #exercises {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .exercise {
+            text-align: left;
+            margin-bottom: 20px;
+            margin-left: 20px;
+        }
+
+        .exercise img {
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div id="user-info">
+            <img src="exercises/avatar.jpg" alt="User Avatar">
+            <span>Имя пользователя</span>
+        </div>
+        <img src="exercises/logo.jpg" alt="Логотип">
+    </header>
+
+    <div id="days">
+        <span>Пн</span>
+        <span>Вт</span>
+        <span>Ср</span>
+        <span>Чт</span>
+        <span>Пт</span>
+        <span>Сб</span>
+        <span>Вс</span>
+    </div>
+
+    <div id="program">
+        <button id="start-workout">Начать тренировку</button>
+        <span>Название программы</span>
+    </div>
+
+    <div id="exercises">
+        <div class="exercise">
+            <img src="exercises/berp.jpeg" alt="Exercise 1">
+            <p>Бёрпи</p>
+        </div>
+        <div class="exercise">
+            <img src="exercises/plan.jpeg" alt="Exercise 2">
+            <p>Планка</p>
+        </div>
+        <div class="exercise">
+            <img src="exercises/prised.jpg" alt="Exercise 3">
+            <p>Приседание</p>
+        </div>
+    </div>
+
+    <a href="#" id="level-buttons">Выбрать другой уровень тренировки</a>
+    <a href="#" id="create-workout">Создать свою тренировку</a>
+</body>
+</html>
