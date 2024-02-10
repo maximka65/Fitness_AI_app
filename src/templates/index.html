@@ -1,27 +1,43 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://cdn.tailwindcss.com"></script>
-    {% block head %}{% endblock %}
-    <title>Натрейдил</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebRTC webcam</title>
+    <style>
+    button {
+        padding: 8px 16px;
+    }
+
+    video {
+        width: 100%;
+    }
+
+    .option {
+        margin-bottom: 8px;
+    }
+
+    #media {
+        max-width: 1280px;
+    }
+    </style>
 </head>
 <body>
-    <nav class="flex justify-between text-3xl my-3">
-        <ul class="flex ml-10">
-            <li>Натрейдил</li>
-        </ul>
-        <ul class="flex gap-5 mr-10">
-            <li>Мой аккаунт</li>
-            <li>Выйти</li>
-        </ul>
-    </nav>
-    <hr>
-    <div id="content">
-        {% block content %}{% endblock %}
-    </div>
+
+<div class="option">
+    <input id="use-stun" type="checkbox"/>
+    <label for="use-stun">Use STUN server</label>
+</div>
+<button id="start" onclick="start()">Start</button>
+<button id="stop" style="display: none" onclick="stop()">Stop</button>
+
+<div id="media">
+    <h2>Media</h2>
+
+    <audio id="audio" autoplay="true"></audio>
+    <video id="video" autoplay="true" playsinline="true"></video>
+</div>
+
+<script src="static/client.js"></script>
 </body>
 </html>
